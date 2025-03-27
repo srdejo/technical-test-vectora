@@ -1,6 +1,5 @@
 package co.srdejo.account.infrastructure.controller;
 
-import co.srdejo.account.application.dto.AmountDto;
 import co.srdejo.account.application.dto.NewAccountDto;
 import co.srdejo.account.domain.model.Account;
 import co.srdejo.account.domain.service.AccountService;
@@ -27,16 +26,6 @@ public class AccountController {
     @GetMapping("/{id}")
     public ResponseEntity<Account> getAccount(@PathVariable Long id) throws AccountNotFoundException {
         return ResponseEntity.ok(accountService.getAccount(id));
-    }
-
-    @PatchMapping("/{fromAccountId}/{toAccountId}")
-    public ResponseEntity<Void> validate(
-            @PathVariable Long fromAccountId,
-            @PathVariable Long toAccountId,
-            @RequestBody AmountDto amountDto) throws AccountNotFoundException {
-
-        accountService.updateBalance(fromAccountId, toAccountId, amountDto.getAmount());
-        return ResponseEntity.ok().build();
     }
 
 }

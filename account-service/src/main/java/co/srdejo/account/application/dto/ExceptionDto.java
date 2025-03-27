@@ -12,4 +12,12 @@ public class ExceptionDto {
         this.message = message;
         this.code = code;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getCode() {
+        return code;
+    }
 }

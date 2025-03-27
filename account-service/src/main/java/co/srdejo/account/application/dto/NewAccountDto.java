@@ -11,6 +11,10 @@ public class NewAccountDto {
     private double initialBalance;
 
     public NewAccountDto() {}
+    public NewAccountDto(String name, double initialBalance) {
+        this.name = name;
+        this.initialBalance = initialBalance;
+    }
 
     public String getName() {
         return name;

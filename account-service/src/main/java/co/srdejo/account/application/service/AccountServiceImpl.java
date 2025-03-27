@@ -1,13 +1,13 @@
 package co.srdejo.account.application.service;
 
 import co.srdejo.account.application.dto.NewAccountDto;
+import co.srdejo.account.domain.exception.AccountNotFoundException;
 import co.srdejo.account.domain.exception.InsufficientFundsException;
 import co.srdejo.account.domain.model.Account;
 import co.srdejo.account.domain.service.AccountService;
 import co.srdejo.account.infrastructure.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
-import javax.security.auth.login.AccountNotFoundException;
 
 @Service
 public class AccountServiceImpl implements AccountService {

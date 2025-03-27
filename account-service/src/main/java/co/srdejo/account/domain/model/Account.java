@@ -51,6 +51,22 @@ public class Account {
         // required for entity
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
     public Long getId() {
         return id;
     }
@@ -61,5 +77,9 @@ public class Account {
 
     public double getBalance() {
         return balance;
+    }
+
+    public Integer getVersion() {
+        return version;
     }
 }
