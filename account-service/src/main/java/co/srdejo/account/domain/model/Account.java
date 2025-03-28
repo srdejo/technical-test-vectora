@@ -2,6 +2,8 @@ package co.srdejo.account.domain.model;
 
 import co.srdejo.account.domain.exception.InsufficientFundsException;
 import co.srdejo.account.domain.exception.NegativeAmountException;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,7 @@ public class Account {
     @Column(name = "saldo")
     private double balance;
 
+    @JsonIgnore
     @Version
     private Integer version;
 
