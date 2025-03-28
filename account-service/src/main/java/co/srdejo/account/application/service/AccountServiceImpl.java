@@ -1,5 +1,6 @@
 package co.srdejo.account.application.service;
 
+import co.srdejo.account.application.dto.AccountDto;
 import co.srdejo.account.application.dto.EventTransaction;
 import co.srdejo.account.application.dto.NewAccountDto;
 import co.srdejo.account.application.dto.TransactionResponseDto;
@@ -32,14 +33,16 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    public Account create(NewAccountDto dto) {
+    public AccountDto create(NewAccountDto dto) {
         Account account = new Account(dto.getName(), dto.getInitialBalance());
-        return accountRepository.save(account);
+        accountRepository.save(account);
+        return new AccountDto(account.getId(), account.getName(), account.getBalance());
     }
 
     @Override
-    public Account getAccount(Long id) throws AccountNotFoundException {
-        return accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Cuenta "+id+" invalida"));
+    public AccountDto getAccount(Long id) throws AccountNotFoundException {
+        Account account =  accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Cuenta "+id+" invalida"));
+        return new AccountDto(account.getId(), account.getName(), account.getBalance());
     }
 
     @Transactional

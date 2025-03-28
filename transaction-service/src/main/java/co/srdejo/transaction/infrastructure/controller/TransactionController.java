@@ -2,6 +2,7 @@ package co.srdejo.transaction.infrastructure.controller;
 
 import co.srdejo.transaction.application.dto.TransactionRequestDto;
 import co.srdejo.transaction.application.dto.TransactionResponseDto;
+import co.srdejo.transaction.application.facade.TransactionFacade;
 import co.srdejo.transaction.domain.model.Transaction;
 import co.srdejo.transaction.domain.service.TransactionService;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,16 @@ import java.util.List;
 public class TransactionController {
 
     private final TransactionService transactionService;
+    private final TransactionFacade transactionFacade;
 
-    public TransactionController(TransactionService transactionService) {
+    public TransactionController(TransactionService transactionService, TransactionFacade transactionFacade) {
         this.transactionService = transactionService;
+        this.transactionFacade = transactionFacade;
     }
 
     @PostMapping()
-    public ResponseEntity<TransactionResponseDto> createTransaction(@RequestBody TransactionRequestDto transaction) {
-        return ResponseEntity.ok(transactionService.create(transaction));
+    public ResponseEntity<TransactionResponseDto> createTransaction(@RequestBody TransactionRequestDto transactionRequestDto) {
+        return ResponseEntity.ok(transactionFacade.makeTransaction(transactionRequestDto));
     }
 
     @GetMapping("{id}")

@@ -1,7 +1,7 @@
 package co.srdejo.account.infrastructure.controller;
 
+import co.srdejo.account.application.dto.AccountDto;
 import co.srdejo.account.application.dto.NewAccountDto;
-import co.srdejo.account.domain.model.Account;
 import co.srdejo.account.domain.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +19,12 @@ public class AccountController {
     }
 
     @PostMapping()
-    public ResponseEntity<Account> createAccount(@RequestBody NewAccountDto account) {
+    public ResponseEntity<AccountDto> createAccount(@RequestBody NewAccountDto account) {
         return ResponseEntity.ok(accountService.create(account));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Account> getAccount(@PathVariable Long id) throws AccountNotFoundException {
+    public ResponseEntity<AccountDto> getAccount(@PathVariable Long id) throws AccountNotFoundException {
         return ResponseEntity.ok(accountService.getAccount(id));
     }
 
