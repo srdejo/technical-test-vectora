@@ -1,8 +1,8 @@
 package co.srdejo.account.infrastructure.controller;
 
+import co.srdejo.account.application.dto.AccountDto;
 import co.srdejo.account.application.dto.NewAccountDto;
 import co.srdejo.account.domain.exception.AccountNotFoundException;
-import co.srdejo.account.domain.model.Account;
 import co.srdejo.account.domain.service.AccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -43,8 +43,7 @@ class AccountControllerTest {
     void createAccount_ShouldReturnAccount() throws Exception {
         // Arrange
         NewAccountDto newAccountDto = new NewAccountDto("Daniel", 1000);
-        Account savedAccount = new Account("Daniel", 1000);
-        savedAccount.setId(1L);
+        AccountDto savedAccount = new AccountDto(1L, "Daniel", 1000);
 
         when(accountService.create(any(NewAccountDto.class))).thenReturn(savedAccount);
 
@@ -61,8 +60,7 @@ class AccountControllerTest {
     @Test
     void getAccount_ShouldReturnAccount() throws Exception {
         // Arrange
-        Account account = new Account("Daniel", 1000);
-        account.setId(1L);
+        AccountDto account = new AccountDto(1L, "Daniel", 1000);
 
         when(accountService.getAccount(1L)).thenReturn(account);
 
