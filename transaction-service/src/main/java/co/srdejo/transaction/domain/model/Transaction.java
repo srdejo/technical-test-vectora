@@ -1,6 +1,7 @@
 package co.srdejo.transaction.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Transaction {
     private long toAccount;
     @Column(name = "monto")
     private double amount;
+    private TransactionStatus status;
     @Column(name = "fecha", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd hh:mm:ss a")
     private LocalDateTime dateTime;
@@ -28,6 +30,7 @@ public class Transaction {
         this.toAccount = toAccount;
         this.amount = amount;
         this.dateTime = LocalDateTime.now();
+        this.status = TransactionStatus.PENDING;
     }
 
     public Transaction() {
@@ -52,5 +55,13 @@ public class Transaction {
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public TransactionStatus getStatus() {
+        return status;
+    }
+
+    public void transactionStatusChanged(TransactionStatus status) {
+        this.status = status;
     }
 }
