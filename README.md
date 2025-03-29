@@ -48,7 +48,7 @@ sudo docker-compose down
 
 ## 🛠️ Servicios y Puertos
 
-Todos los servicios son internos y se comunican dentro de la red de Docker. No hay exposición de puertos externos.
+Todos los servicios son internos y se comunican dentro de la red de Docker. Para acceder a cualquier servicio se ingresa a través del puerto 8080 que corresponde a BFF Service.
 
 - **Kafka Broker** → Interno en la red Docker 
 - **PostgreSQL** → Interno en la red Docker 
