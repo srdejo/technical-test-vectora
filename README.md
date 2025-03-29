@@ -1,4 +1,4 @@
-# Proyecto BFF con Kafka y PostgreSQL
+# Prueba Técnica - Backend Developer (Java + Spring Boot)
 
 Este proyecto utiliza Docker Compose para levantar un entorno con Kafka, PostgreSQL y varios microservicios (account-service, transaction-service y bff-service).
 
