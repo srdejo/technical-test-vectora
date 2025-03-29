@@ -1,40 +1,49 @@
 package co.srdejo.transaction.application.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class TransactionRequestDto {
-    private long fromAccount;
-    private long toAccount;
-    private double amount;
+    @NotNull(message = "La cuenta de origen es obligatoria")
+    @Positive(message = "No es una cuenta valida")
+    private Long fromAccount;
+    @NotNull(message = "La cuenta de destino es obligatoria")
+    @Positive(message = "No es una cuenta valida")
+    private Long toAccount;
+    @NotNull(message = "El monto es obligatorio")
+    @Positive(message = "El monto no es un valor valido")
+    private Double amount;
 
     public TransactionRequestDto() {
     }
 
-    public TransactionRequestDto(long fromAccount, long toAccount, double amount) {
+    public TransactionRequestDto(Long fromAccount, Long toAccount, Double amount) {
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
         this.amount = amount;
     }
 
-    public long getFromAccount() {
+    public Long getFromAccount() {
         return fromAccount;
     }
 
-    public void setFromAccount(long fromAccount) {
+    public void setFromAccount(Long fromAccount) {
         this.fromAccount = fromAccount;
     }
 
-    public long getToAccount() {
+    public Long getToAccount() {
         return toAccount;
     }
 
-    public void setToAccount(long toAccount) {
+    public void setToAccount(Long toAccount) {
         this.toAccount = toAccount;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }

@@ -42,7 +42,7 @@ class AccountControllerTest {
     @Test
     void createAccount_ShouldReturnAccount() throws Exception {
         // Arrange
-        NewAccountDto newAccountDto = new NewAccountDto("Daniel", 1000);
+        NewAccountDto newAccountDto = new NewAccountDto("Daniel", 1000D);
         AccountDto savedAccount = new AccountDto(1L, "Daniel", 1000);
 
         when(accountService.create(any(NewAccountDto.class))).thenReturn(savedAccount);
@@ -53,8 +53,8 @@ class AccountControllerTest {
                         .content(objectMapper.writeValueAsString(newAccountDto)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("Daniel"))
-                .andExpect(jsonPath("$.balance").value(1000));
+                .andExpect(jsonPath("$.nombre").value("Daniel"))
+                .andExpect(jsonPath("$.saldo").value(1000));
     }
 
     @Test
@@ -68,8 +68,8 @@ class AccountControllerTest {
         mockMvc.perform(get("/accounts/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.name").value("Daniel"))
-                .andExpect(jsonPath("$.balance").value(1000));
+                .andExpect(jsonPath("$.nombre").value("Daniel"))
+                .andExpect(jsonPath("$.saldo").value(1000));
     }
 
     @Test
