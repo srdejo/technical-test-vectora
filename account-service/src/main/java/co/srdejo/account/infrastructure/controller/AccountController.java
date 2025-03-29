@@ -3,10 +3,9 @@ package co.srdejo.account.infrastructure.controller;
 import co.srdejo.account.application.dto.AccountDto;
 import co.srdejo.account.application.dto.NewAccountDto;
 import co.srdejo.account.domain.service.AccountService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.security.auth.login.AccountNotFoundException;
 
 @RestController
 @RequestMapping("/accounts")
@@ -19,12 +18,12 @@ public class AccountController {
     }
 
     @PostMapping()
-    public ResponseEntity<AccountDto> createAccount(@RequestBody NewAccountDto account) {
+    public ResponseEntity<AccountDto> createAccount(@Valid @RequestBody NewAccountDto account) {
         return ResponseEntity.ok(accountService.create(account));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccountDto> getAccount(@PathVariable Long id) throws AccountNotFoundException {
+    public ResponseEntity<AccountDto> getAccount(@PathVariable Long id) {
         return ResponseEntity.ok(accountService.getAccount(id));
     }
 
